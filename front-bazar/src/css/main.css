@@ -1,0 +1,92 @@
+.menosMargen {
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.imagenesDual {
+    flex: 0 0 33.33%;
+    max-width: 80%;
+}
+
+.imagenAspecto {
+    border-radius: 2.5rem !important;
+}
+
+.colores{
+    background-color: red;
+}
+
+.espacio1{
+    height: 20vh;
+    position: relative;
+    left: 5%;
+}
+
+.botonAlinear{
+    position: relative;
+    left: 93%;
+}
+
+
+.botonAgregar{
+    z-index: 1;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 82%;
+}
+
+.botonInfo{
+    position: absolute;
+    left: 89%;
+    transform: translateX(-50%);
+    top: 2%;
+}
+
+.Medio{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.cancelar{
+    position: absolute;
+    top:0%;
+    left: 95%;
+}
+
+.carrucelImg {
+    padding: 0% !important;
+}
+
+.acomodo {
+   border-color: transparent !important;
+   border-top: 200px;
+}
+.rounded-card {
+    border-radius: 50%; 
+    min-height: 500px;
+    min-width: 500px;
+  }
+
+  #Texto{
+      text-align: center;
+      font-family: 'Sen', sans-serif;
+      font-weight: 400;
+      color: black;
+  }
+
+  .TextoTitulo{
+    text-align: left;
+    font-family: 'Sen', sans-serif;
+    font-weight: 800;
+    color: black;
+    font-size: 5rem;
+}
+
+.amarilloTitulo::selection {
+    background: #FFDF6E;
+    color: black;
+  }
+
