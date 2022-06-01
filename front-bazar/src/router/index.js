@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ShoppingBag from '../views/ShoppingBag.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,12 @@ const routes = [
     name: 'Shopping Bag',
     component: ShoppingBag
   },
+  {
+    path:'/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+
   
 ]
 

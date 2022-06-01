@@ -1,8 +1,8 @@
 <template>
-<v-container class="mb-16">
+<v-container>
     <v-row class="mt-10">
         <v-col cols="12" sm="10">
-            <span class="TextoTitulo amarilloTitulo">Tú cesta</span>
+            <span class="TextoTitulo amarilloTitulo">Dashboard</span>
         </v-col>
         <v-col cols="12" sm="2">
             <v-btn x-large fab dark to="/" >
@@ -10,22 +10,15 @@
             </v-btn>
         </v-col>
     </v-row>
-    <v-row class="mt-10">
-        <List/>
-        
-    </v-row>
 </v-container>
 </template>
 
 <script>
-
-    import List from '../components/List.vue'
-
     export default{
-            name: 'ShoppingBag',
-            
+        name: 'Dashboard',
+
         components: {
-            List,
-        } 
+
+        },
     };
 </script>

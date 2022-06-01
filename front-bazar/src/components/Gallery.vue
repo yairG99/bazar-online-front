@@ -61,18 +61,18 @@ import Carrucel from "./Carrucel.vue";
          items: [
             {
                 id:1,
+                src: require("../assets/img-producto/img4.jpg"),
+                title: 'Sueter Blanco Encaje',
+                talla: 'M',
+                precio: '120' 
+            },
+            {
+                id:2,
                 src: require("../assets/img-producto/img1.jpg") ,
                 title: 'Gorra Zara',
                 talla: 'CH',
                 precio: '90'
 
-            },
-            {
-                id:2,
-                src: require("../assets/img-producto/img2.jpg"),
-                title: 'Blusa bordada flores',
-                talla: 'CH',
-                precio: '120'
             },
             {
                 id:3,
@@ -83,10 +83,10 @@ import Carrucel from "./Carrucel.vue";
             },
             {
                 id:4,
-                src: require("../assets/img-producto/img4.jpg"),
-                title: 'Sueter Blanco Encaje',
-                talla: 'M',
-                precio: '120' 
+                src: require("../assets/img-producto/img2.jpg"),
+                title: 'Blusa bordada flores',
+                talla: 'CH',
+                precio: '120'
             },
             {
                 id:5,

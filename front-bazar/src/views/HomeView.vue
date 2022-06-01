@@ -19,7 +19,7 @@
           <Gallery />
         </v-row>
 
-        <v-row fluid>
+        <v-row class="mt-16">
           <v-footer>
             <Footer />
           </v-footer>
