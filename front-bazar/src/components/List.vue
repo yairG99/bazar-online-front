@@ -5,11 +5,11 @@
                         class="mt-10">  
                 <v-col cols="12" sm="1"></v-col>     
                 <v-col cols="12" sm="2" >
-                        <v-img :src="item.src" max-height="120" max-width="120" class="grey lighten-2 imagenAspecto2" >
+                        <v-img :src="item.src" max-height="750" max-width="750" class="grey lighten-2 imagenAspecto2" >
                         </v-img>
                 </v-col>
                 <v-col cols="12" sm="8" class="ml-5">
-                    <v-row class="textoSemi mt-3">
+                    <v-row class="textoSemi mt-7">
                         {{item.title}}
                     </v-row>
                     <v-row class="textoBasic mt-6">

@@ -12,6 +12,7 @@
     </v-row>
     <v-row class="mt-10">
         <List/>
+        
     </v-row>
 </v-container>
 </template>
