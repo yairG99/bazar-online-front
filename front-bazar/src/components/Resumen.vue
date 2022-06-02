@@ -1,46 +1,41 @@
 <template>
     <v-card min-width="350" fluid class="ml-n16 mt-16">
         <v-row>
-            <v-card-text class="textoTitulo3 mt-5">
-                Pago Final: 
+            <v-card-text class="textoTitulo34 mt-5">
+                Resumen: 
             </v-card-text>
         </v-row>
         <v-row>
-            <v-col cols="12" sm="6">
-                <v-card-text class="textoBasic2">
-                    Valor del pedido: 
+                <v-card-text class=" ml-4 mb-n2 textoBasic">
+                    Te esperamos en: 
+                    <v-spacer class="textoBasic11">
+                    Cancha del Árbol
+                    el Martes 31 de Mayo de 10:00 am a 12:00 pm. 
+                    </v-spacer>
                 </v-card-text>
-            </v-col>
-            <v-col cols="12" sm="6">
-                <v-card-text class="textoBasic3">
-                     $120.00
-                </v-card-text>
-            </v-col>
         </v-row>
-        <v-row class="mt-n10 mb-5">
-            <v-col cols="12" sm="8">
-                <v-card-text class="textoBasic2">
-                    Envío y Plataforma: 
+        <v-row class=" mb-5">
+                <v-card-text class="ml-4 mb-n8 textoBasic">
+                    Ahí te cobraremos:
+                    <v-spacer class="textoBasic11">
+                    175.00 pesitos 
+                    </v-spacer>
                 </v-card-text>
-            </v-col>
-            <v-col cols="12" sm="4">
-                <v-card-text class="textoBasic3">
-                     $10.00
-                </v-card-text>
-            </v-col>
         </v-row>
-        <v-card outlined>
-            <v-card-text class="textoBasic4">
-                Total: $130
-            </v-card-text>
-        </v-card>
+
+        <v-row class=" mb-5">
+                <v-card-text class="ml-4 textoBasic">
+                    Muchas gracias por 
+                    comprar con nosotros:)
+                </v-card-text>
+        </v-row>
     </v-card>
 </template>
 
 
 <script>
     export default{
-        name: 'Recibo',
+        name: 'Resumen',
         data: () => {
             return {
                 items: [

@@ -9,12 +9,6 @@
                         </v-img>
                 </v-col>
                 <v-col cols="12" sm="8" class="ml-5">
-                    <v-row >
-                        <v-btn x-small text fab id="izquierda">
-                            <v-icon small  >mdi-close-circle</v-icon>
-                        </v-btn>
-                        
-                    </v-row>
                     <v-row class="textoSemi mt-7">
                         {{item.title}}
                     </v-row>
@@ -36,7 +30,7 @@
 <script>
 
 export default {
-    name:'List',
+    name:'ListX',
 
     data: () => {
             return {

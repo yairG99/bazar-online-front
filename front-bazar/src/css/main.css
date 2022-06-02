@@ -88,9 +88,31 @@
     font-size: 5rem;
 }
 
+.TextoTituloAlt{
+    text-align: left;
+    font-family: 'Sen', sans-serif;
+    font-weight: 800;
+    color:#FFDF6E;
+    font-size: 5rem;
+}
+
+.TextoTitulo10{
+    text-align: left;
+    font-family: 'Sen', sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 5rem;
+}
+
+
 .amarilloTitulo::selection {
     background: #FFDF6E;
     color: black;
+  }
+
+  .negroTitulo::selection {
+    background:black;
+    color: white;
   }
 
 .SinLineaCard {
@@ -106,4 +128,119 @@
 .textoBasic{
     font-family: 'Sen', sans-serif;
     font-size: 1.2vw;
+}
+
+.textoBasic11{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
+.textoBasic6{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    text-align: center;
+}
+
+.textoBasic2{
+    font-family: 'Sen', sans-serif;
+    font-size: 1vw;
+    color: gray;
+}
+
+
+
+.textoBasic3{
+    font-family: 'Sen', sans-serif;
+    font-size: 1vw;
+    color: black;
+    text-align: end;
+}
+
+.textoBasic31{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+
+.textoBasic32{
+    font-family: 'Sen', sans-serif;
+    font-size: 1vw;
+    text-align: center;
+    text-decoration: underline black;
+    cursor: pointer;
+    
+}
+
+.textoBasic4{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    color: black;
+    font-weight: bold;
+
+}
+
+.textoSeguir{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    color:#FFDF6E;
+    text-decoration-color: #FFDF6E;
+    font-weight: bold;
+}
+
+
+.textoTitulo3{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.textoTitulo34{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.textoTitulo4{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.2vw;
+    font-weight:800;
+    text-align: center;
+}
+
+.textoTitulo5{
+    font-family: 'Sen', sans-serif;
+    font-size: 1.7vw;
+    font-weight:800;
+}
+
+
+#izquierda{
+    text-align: end;
+    position: absolute;
+    left:-1vw;
+}
+
+.caja{
+    border: 3vw;
+    border-color:#FFDF6E;
+}
+
+.singris{
+    background-color: transparent!;
+}
+
+.centrar input {
+    text-align: center;
+  }
+
+  .centrar1{
+    text-align: center;
+  }
+
+.colores2{
+background-color: #FFDF6E !important;    
 }

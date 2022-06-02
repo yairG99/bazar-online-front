@@ -5,7 +5,7 @@
           <v-col cols="12" sm="11">
           </v-col>
           <v-col cols="12" sm="1">
-            <v-btn fab x-large fixed class="botonBag" to="/bag" >
+            <v-btn fab x-large fixed to="/bag" >
             <v-img
               contain
               max-height="40"
