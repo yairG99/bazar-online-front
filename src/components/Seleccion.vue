@@ -1,11 +1,18 @@
 <template>
   <v-container fluid>
     <v-sheet class="mx-auto" elevation="8" max-width="1300">
-      <v-slide-group v-model="model" class="pa-4" show-arrows>
+      <v-slide-group
+        v-model="model"
+        class="pa-4"
+        show-arrows
+        mandatory
+        center-active
+      >
         <v-slide-item
           v-for="place in places"
           :key="place._id"
           v-slot="{ active, toggle }"
+          @change="saveSelected(place)"
         >
           <v-card
             :color="active ? '#FFDF6E' : 'white'"
@@ -38,8 +45,8 @@
               x-large
               rounded
               class="textoTitulo4"
-              to="/contacto"
               color="#FFDF6E"
+              @click="storePlace()"
               >CONFIRMAR</v-btn
             >
           </v-row>
@@ -55,11 +62,21 @@ import { mapGetters } from "vuex";
 export default {
   name: "Seleccion",
 
-  data: () => ({
-    model: null,
-  }),
-
-  components: {},
+  data: () => {
+    return {
+      selection: {},
+      model: null,
+    };
+  },
+  methods: {
+    storePlace() {
+      localStorage.setItem("place", JSON.stringify(this.selection));
+      this.$router.push("/contacto");
+    },
+    saveSelected(place) {
+      this.selection = place;
+    },
+  },
   computed: {
     ...mapGetters({ places: "getPlaces" }),
   },
