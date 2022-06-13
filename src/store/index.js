@@ -12,15 +12,17 @@ export default new Vuex.Store({
         `{
         "productos": [],
         "valPedido": 0,
-        "envPlat": 0,
+        "envPlat": 10,
         "activo": true
       }`
     ),
     products: [],
+    places: [],
   },
   getters: {
     getCart: (state) => state.cart,
     getProducts: (state) => state.products,
+    getPlaces: (state) => state.places,
     getCartProducts: (state) =>
       state.products.filter((product) =>
         state.cart.productos.includes(product._id)
@@ -41,6 +43,9 @@ export default new Vuex.Store({
     setProducts(state, payload) {
       state.products = payload;
     },
+    setPlaces(state, payload) {
+      state.places = payload;
+    },
   },
   actions: {
     async addToCart({ commit, dispatch, getters }, id) {
@@ -60,9 +65,17 @@ export default new Vuex.Store({
     async getProducts({ commit }) {
       const url = BASE_URL + ENDPOINTS.PRODUCTS.BASE;
       try {
-        const res = await axios.get(url);
-        const products = res.data;
+        const products = (await axios.get(url)).data;
         commit("setProducts", products);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getPlaces({ commit }) {
+      const url = BASE_URL + ENDPOINTS.PLACES.BASE;
+      try {
+        const places = (await axios.get(url)).data;
+        commit("setPlaces", places);
       } catch (error) {
         console.log(error);
       }

@@ -7,13 +7,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
 
   mounted() {
     this.$store.dispatch("getProducts");
+    this.$store.dispatch("getPlaces");
   },
 
   methods: {
