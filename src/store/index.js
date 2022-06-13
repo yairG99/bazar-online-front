@@ -34,11 +34,14 @@ export default new Vuex.Store({
     },
     deleteFromCart(state, payload) {
       state.cart.productos = state.cart.productos.filter(
-        (product) => product.id != payload
+        (product) => product != payload
       );
     },
     incrementCartTotal(state, payload) {
       state.cart.valPedido += payload;
+    },
+    decrementCartTotal(state, payload) {
+      state.cart.valPedido -= payload;
     },
     setProducts(state, payload) {
       state.products = payload;
@@ -53,6 +56,17 @@ export default new Vuex.Store({
         commit("addToCart", id);
         let product = await dispatch("getProduct", id);
         commit("incrementCartTotal", product.price);
+        let cart = await getters.getCart;
+        localStorage.setItem("cart", JSON.stringify(cart));
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteFromCart({ commit, dispatch, getters }, id) {
+      try {
+        commit("deleteFromCart", id);
+        let product = await dispatch("getProduct", id);
+        commit("decrementCartTotal", product.price);
         let cart = await getters.getCart;
         localStorage.setItem("cart", JSON.stringify(cart));
       } catch (error) {
