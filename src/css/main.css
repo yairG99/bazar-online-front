@@ -4,7 +4,7 @@
 }
 
 .imagenesDual {
-  /* flex: 0 0 33.33%; */
+  flex: 0 0 33.33%;
   max-width: 80%;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .botonAgregar {
-  /* z-index: 1; */
+  z-index: 1;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
