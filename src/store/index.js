@@ -18,6 +18,7 @@ export default new Vuex.Store({
     ),
     products: [],
     places: [],
+    invalidItem: false,
   },
   getters: {
     getCart: (state) => state.cart,
@@ -27,6 +28,7 @@ export default new Vuex.Store({
       state.products.filter((product) =>
         state.cart.productos.includes(product._id)
       ),
+    getValidState: (state) => state.invalidItem,
   },
   mutations: {
     addToCart(state, payload) {
@@ -49,17 +51,23 @@ export default new Vuex.Store({
     setPlaces(state, payload) {
       state.places = payload;
     },
+    toggleValidity(state) {
+      state.invalidItem = !state.invalidItem;
+    },
   },
   actions: {
-    async addToCart({ commit, dispatch, getters }, id) {
-      try {
-        commit("addToCart", id);
-        let product = await dispatch("getProduct", id);
-        commit("incrementCartTotal", product.price);
-        let cart = await getters.getCart;
-        localStorage.setItem("cart", JSON.stringify(cart));
-      } catch (error) {
-        console.log(error);
+    async addToCart({ commit, dispatch, state }, id) {
+      if (!state.cart.productos.includes(id)) {
+        try {
+          commit("addToCart", id);
+          let product = await dispatch("getProduct", id);
+          commit("incrementCartTotal", product.price);
+          localStorage.setItem("cart", JSON.stringify(state.cart));
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        commit("toggleValidity");
       }
     },
     async deleteFromCart({ commit, dispatch, getters }, id) {

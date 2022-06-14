@@ -48,18 +48,25 @@
         </v-card>
       </v-col>
     </v-row>
+    <snack-alert :visible="active" :text="alertMessage" />
   </v-container>
 </template>
 
 <script>
 import Carrucel from "./Carrucel.vue";
+import SnackAlert from "./SnackAlert.vue";
 import { mapActions, mapGetters } from "vuex";
+
+let timeout;
 
 export default {
   name: "Gallery",
 
   data: () => {
-    return {};
+    return {
+      // active: true,
+      alertMessage: "Este artículo ya se encuentra en tu carrito",
+    };
   },
   methods: {
     ...mapActions(["addToCart"]),
@@ -69,10 +76,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({ products: "getProducts" }),
+    ...mapGetters({ products: "getProducts", active: "getValidState" }),
   },
   components: {
     Carrucel,
+    SnackAlert,
   },
 };
 </script>
