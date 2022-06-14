@@ -7,14 +7,18 @@
       <v-card-text class="ml-4 mb-n2 textoBasic">
         Te esperamos en:
         <v-spacer class="textoBasic11">
-          Cancha del Árbol el Martes 31 de Mayo de 10:00 am a 12:00 pm.
+          <!-- Cancha del Árbol el Martes 31 de Mayo de 10:00 am a 12:00 pm. -->
+          {{lugar.lugar}} de
+          {{lugar.horario}} el día
+          {{lugar.fecha}}
         </v-spacer>
       </v-card-text>
     </v-row>
+    
     <v-row class="mb-5">
       <v-card-text class="ml-4 mb-n8 textoBasic">
         Ahí te cobraremos:
-        <v-spacer class="textoBasic11"> 175.00 pesitos </v-spacer>
+        <v-spacer class="textoBasic11"> ${{ sum(cart.valPedido, cart.envPlat) }}.00</v-spacer>
       </v-card-text>
     </v-row>
 
@@ -27,44 +31,64 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Resumen",
   data: () => {
     return {
-      items: [
-        {
-          id: 1,
-          src: require("../assets/img-producto/imagen4.jpg"),
-          title: "Sueter Blanco Encaje",
-          talla: "M",
-          precio: "120",
-        },
-        {
-          id: 2,
-          src: require("../assets/img-producto/imagen1.jpg"),
-          title: "Gorra Zara",
-          talla: "CH",
-          precio: "90",
-        },
-        {
-          id: 3,
-          src: require("../assets/img-producto/imagen3.jpg"),
-          title: "Gorrito Chilo",
-          talla: "All",
-          precio: "80",
-        },
+      // items: [
+      //   {
+      //     id: 1,
+      //     src: require("../assets/img-producto/imagen4.jpg"),
+      //     title: "Sueter Blanco Encaje",
+      //     talla: "M",
+      //     precio: "120",
+      //   },
+      //   {
+      //     id: 2,
+      //     src: require("../assets/img-producto/imagen1.jpg"),
+      //     title: "Gorra Zara",
+      //     talla: "CH",
+      //     precio: "90",
+      //   },
+      //   {
+      //     id: 3,
+      //     src: require("../assets/img-producto/imagen3.jpg"),
+      //     title: "Gorrito Chilo",
+      //     talla: "All",
+      //     precio: "80",
+      //   },
 
-        {
-          id: 4,
-          src: require("../assets/img-producto/imagen2.jpg"),
-          title: "Blusa bordada flores",
-          talla: "CH",
-          precio: "120",
-        },
-      ],
+      //   {
+      //     id: 4,
+      //     src: require("../assets/img-producto/imagen2.jpg"),
+      //     title: "Blusa bordada flores",
+      //     talla: "CH",
+      //     precio: "120",
+      //   },
+      // ],
+      lugar:''
     };
   },
+  methods:{
+    sum: (value1, value2) => {
+      return value1 + value2;
+    },
+  },
+  computed: {
+    ...mapGetters({ cart: "getCart" }),
+  },
+    mounted() {
 
+     if (localStorage.getItem('place')) {
+      try {
+        this.lugar = JSON.parse(localStorage.getItem('place'));
+      } catch(e) {
+      }
+    }
+  }
+,
   components: {},
 };
 </script>

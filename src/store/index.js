@@ -19,6 +19,10 @@ export default new Vuex.Store({
     products: [],
     places: [],
     invalidItem: false,
+    // tokenCliente:null,
+    // idcliente: null
+    correo:null,
+    telefono: null,
   },
   getters: {
     getCart: (state) => state.cart,
@@ -54,6 +58,18 @@ export default new Vuex.Store({
     toggleValidity(state) {
       state.invalidItem = !state.invalidItem;
     },
+    // setTokenCliente(state, payload){
+    //   state.tokenCliente=payload
+    // },
+    // setIdCliente(state, payload){
+    //   state.idcliente = payload
+    // }
+    setCorreo(state, payload){
+      state.correo=payload
+    },
+    setTel(state, payload){
+      state.telefono = payload
+    }
   },
   actions: {
     async addToCart({ commit, dispatch, state }, id) {
@@ -102,6 +118,71 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
+    async registracontacto({commit},cliente){//registra el cliente, obtiene el id y lo carga al localstoragew
+      
+      try {
+        const res= await fetch('https://bazar-online-back.herokuapp.com/api/clientes',{
+          method: 'POST',
+          headers:{
+            'Content-Type':'application/json',
+          },
+          body:JSON.stringify(cliente)
+        })
+        console.log('datos de clientesbd '+ res)
+        // const clientesDb = await res.json()
+        commit('setCorreo', cliente.email)
+        commit('setTel', cliente.tel)
+        localStorage.setItem('correo', cliente.email)
+        localStorage.setItem('telefono', cliente.tel)
+        window.location.replace("/token");
+      } catch (error) {
+        console.log('error'+error)
+      }
+    },
+    CerrarSesion({commit}){
+      commit('setPlaces',null)
+      commit('setCorreo',null)
+      commit('setTel',null)
+      commit('setProducts',null)
+      localStorage.removeItem('products')
+      localStorage.removeItem('cart')
+      localStorage.removeItem('correo')
+      localStorage.removeItem('telefono')
+      localStorage.removeItem('place')
+      window.location.replace("/");
+    }
+    // obtenerIdCliente({commit}){
+    //   if(localStorage.getItem('idCliente')){
+    //     commit('setIdCliente',localStorage.getItem('idCliente'))
+    //   }else{
+    //     commit('setIdCliente',null)
+    //   }
+    // },
+    // async registraTokenCliente({commit},tokenCorreo){//para mandarlo con el idCliente y activar el usuario
+    //   try {
+    //     const res = await fetch("https://bazar-online-back.herokuapp.com/api/vtoken/login",{
+    //       method: 'POST',
+    //       headers:{
+    //         'Content-Type':'application/json',
+    //       },
+    //       body: JSON.stringify(tokenCorreo)
+    //     })
+    //     console.log(res)
+    //     const tokenDb= await res.json()
+    //     commit('setTokenCliente',tokenDb.data.token)
+    //     localStorage.setItem('TokenCliente',clientesDb.data._id)
+    //   } catch (error) {
+    //     console.log('error'+error)
+
+    //   }
+    // },
+    // obtenerTokenCliente({commit}){
+    //   if(localStorage.getItem('tokenCliente')){
+    //     commit('setTokenCliente',localStorage.getItem('tokenCliente'))
+    //   }else{
+    //     commit('setTokenCliente',null)
+    //   }
+    // },
   },
   modules: {},
 });

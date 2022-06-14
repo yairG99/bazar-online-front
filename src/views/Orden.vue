@@ -28,7 +28,7 @@
     <v-row class="mt-16 mb-16">
         <v-col cols="12" sm="4"></v-col>
             <v-col cols="12" sm="4" >
-                <a  href="/" class="ml-16 textoSeguir">
+                <a @click="CerrarSesion"  class="ml-16 textoSeguir">
                    ¿Quieres seguir comprando? 
                 </a>
             </v-col>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex';
     import ListX from '../components/ListX.vue'
     import Resumen from '../components/Resumen.vue'
 
@@ -50,5 +50,8 @@
             ListX,
             Resumen
         },
+        methods:{
+            ...mapActions(['CerrarSesion'])
+        }
     };
 </script>

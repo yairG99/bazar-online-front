@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <v-row class="mt-10">
+    <form @submit.prevent="registracontacto(cliente)">
+<v-row class="mt-10">
       <v-col cols="12" sm="10">
         <v-row>
           <span class="TextoTitulo amarilloTitulo">¿Cómo te</span>
@@ -19,11 +20,13 @@
       <v-col cols="12" sm="3"></v-col>
       <v-col cols="12" sm="6">
         <v-text-field
+        required
           rounded
           outlined
           class="centrar"
           placeholder="email"
           color="#FFDF6E"
+          v-model="cliente.email"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="3"></v-col>
@@ -32,11 +35,13 @@
       <v-col cols="12" sm="3"></v-col>
       <v-col cols="12" sm="6">
         <v-text-field
+        
           class="centrar"
           rounded
           outlined
           placeholder="@ de instagram"
           color="#FFDF6E"
+          v-model="cliente.instagram"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="3"></v-col>
@@ -45,12 +50,14 @@
       <v-col cols="12" sm="3"></v-col>
       <v-col cols="12" sm="6">
         <v-text-field
+          required
           class="centrar"
           rounded
           outlined
           placeholder="telefono"
           text-xs-right
           color="#FFDF6E"
+          v-model="cliente.tel"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="3"></v-col>
@@ -62,19 +69,34 @@
           flat
           x-large
           rounded
+          type="submit"
           class="mt-8 textoTitulo4"
-          to="/token"
           color="#FFDF6E"
-          >CONTINUAR</v-btn
-        >
+          >CONTINUAR</v-btn>
       </v-col>
       <v-col cols="12" sm="5"></v-col>
     </v-row>
+    </form>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: "Contacto",
+  data() {
+    return {
+      cliente:{
+        email:"",
+        tel:"",
+        instagram:""
+      }
+    }
+  },
+  methods:{
+        ...mapActions(['registracontacto'])
+  },
+  computed: {
+  },
 };
 </script>
