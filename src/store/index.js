@@ -20,9 +20,8 @@ export default new Vuex.Store({
     places: [],
     cliente_id: null,
     auth: false,
-    bandera: false,
     invalidItem: false,
-    correo:null,
+    correo: null,
     telefono: null,
   },
   getters: {
@@ -34,7 +33,7 @@ export default new Vuex.Store({
         state.cart.productos.includes(product._id)
       ),
     getValidState: (state) => state.invalidItem,
-    getClienteId: (state) => state.cliente_id
+    getClienteId: (state) => state.cliente_id,
   },
   mutations: {
     addToCart(state, payload) {
@@ -66,21 +65,18 @@ export default new Vuex.Store({
     // setIdCliente(state, payload){
     //   state.idcliente = payload
     // }
-    setCorreo(state, payload){
-      state.correo=payload
+    setCorreo(state, payload) {
+      state.correo = payload;
     },
-    setTel(state, payload){
-      state.telefono = payload
+    setTel(state, payload) {
+      state.telefono = payload;
     },
-    set_idCliente(state, cliente_id){
-      state.cliente_id = cliente_id
+    set_idCliente(state, cliente_id) {
+      state.cliente_id = cliente_id;
     },
-    set_Auth(state, auth){
-      state.auth = auth
+    set_Auth(state, auth) {
+      state.auth = auth;
     },
-    set_Bandera(state, auth){
-      state.bandera = auth
-    }
   },
   actions: {
     async addToCart({ commit, dispatch, state }, id) {
@@ -129,80 +125,12 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
-    async set_idCliente({commit}, cliente_id) {
+    async set_idCliente({ commit }, cliente_id) {
       commit("set_idCliente", cliente_id);
     },
-    async set_Auth({commit}, auth) {
+    async set_Auth({ commit }, auth) {
       commit("set_Auth", auth);
     },
-    async set_Bandera({commit}, auth) {
-      commit("set_Bandera", auth);
-    }
- /*   async registracontacto({commit},cliente){//registra el cliente, obtiene el id y lo carga al localstoragew
-      
-      try {
-        const res= await fetch('https://bazar-online-back.herokuapp.com/api/clientes',{
-          method: 'POST',
-          headers:{
-            'Content-Type':'application/json',
-          },
-          body:JSON.stringify(cliente)
-        })
-        console.log('datos de clientesbd '+ res)
-        // const clientesDb = await res.json()
-        commit('setCorreo', cliente.email)
-        commit('setTel', cliente.tel)
-        localStorage.setItem('correo', cliente.email)
-        localStorage.setItem('telefono', cliente.tel)
-        window.location.replace("/token");
-      } catch (error) {
-        console.log('error'+error)
-      }
-    },
-    CerrarSesion({commit}){
-      commit('setPlaces',null)
-      commit('setCorreo',null)
-      commit('setTel',null)
-      commit('setProducts',null)
-      localStorage.removeItem('products')
-      localStorage.removeItem('cart')
-      localStorage.removeItem('correo')
-      localStorage.removeItem('telefono')
-      localStorage.removeItem('place')
-      window.location.replace("/");
-    }*/
-    // obtenerIdCliente({commit}){
-    //   if(localStorage.getItem('idCliente')){
-    //     commit('setIdCliente',localStorage.getItem('idCliente'))
-    //   }else{
-    //     commit('setIdCliente',null)
-    //   }
-    // },
-    // async registraTokenCliente({commit},tokenCorreo){//para mandarlo con el idCliente y activar el usuario
-    //   try {
-    //     const res = await fetch("https://bazar-online-back.herokuapp.com/api/vtoken/login",{
-    //       method: 'POST',
-    //       headers:{
-    //         'Content-Type':'application/json',
-    //       },
-    //       body: JSON.stringify(tokenCorreo)
-    //     })
-    //     console.log(res)
-    //     const tokenDb= await res.json()
-    //     commit('setTokenCliente',tokenDb.data.token)
-    //     localStorage.setItem('TokenCliente',clientesDb.data._id)
-    //   } catch (error) {
-    //     console.log('error'+error)
-
-    //   }
-    // },
-    // obtenerTokenCliente({commit}){
-    //   if(localStorage.getItem('tokenCliente')){
-    //     commit('setTokenCliente',localStorage.getItem('tokenCliente'))
-    //   }else{
-    //     commit('setTokenCliente',null)
-    //   }
-    // },
   },
   modules: {},
 });
