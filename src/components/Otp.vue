@@ -6,9 +6,6 @@
             <span class="TextoTitulo10 negroTitulo ml-n7">TOKEN</span>
         </v-col>
         <v-col cols="12" sm="1">
-            <v-btn x-large fab color="#FFDF6E" to="/contacto" >
-                <v-icon x-large>mdi-arrow-left</v-icon>
-            </v-btn>
         </v-col>
     </v-row>
     <v-row>
@@ -25,6 +22,7 @@
                 <v-otp-input
                 class="outlined"
                 length="6"
+                v-model="otp"
                 ></v-otp-input>
         </v-col>
         <v-col cols="12" sm="5"></v-col>   
@@ -38,16 +36,71 @@
             </v-col>
         <v-col cols="12" sm="3"></v-col> 
     </v-row>
-        
+    <v-row fluid>
+        <v-col cols="12" sm="5"></v-col>
+        <v-col cols="12" sm="2" class="ml-10">
+            <v-btn x-large rounded class="mt-8 textoTitulo4 " v-on:click="Login"  color="#FFDF6E">CONTINUAR</v-btn>
+        </v-col> 
+        <v-col cols="12" sm="3"></v-col>
+    </v-row> 
     </v-container>
 </template>
 
 <script>
-    export default{
+    import axios from "axios";
+    export default{ 
         name: 'Otp',
+        data: () => ({
+            otp: '',
+            token: '',
+            bandera1: false,
+        }),
+        methods: {
+            Login() {
+                console.log("Log : ", this.otp);
+                const ruta = 'https://bazar-online-back.herokuapp.com/api/vtoken/login'
+                axios.post(ruta, { token: this.otp })
+                    .then((response) => {
+                        this.token = response.data.token;
 
-        components: {
+                    }, (error) => {
+                        console.log(error);
 
+                    });
+                    this.overlay = !this.overlay
+            },
         },
+        computed: {
+            labels(){
+                return this.token;
+            }
+        },
+        watch: {
+            token: {
+                handler:function(value) {
+                setTimeout(() => this.bandera1 = true, 5000); 
+                const ruta = 'https://bazar-online-back.herokuapp.com/api/vtoken/posts/' + this.$store.state.cliente_id
+                const sAuth = `Bearer ${value}`
+                axios.post(ruta, {},
+                {
+                    headers: {
+                        'Authorization': sAuth
+                    }
+                })
+               .then((res) => {
+                    this.$store.dispatch("set_Auth", res.data.valor.verificado);
+                    this.$store.dispatch("set_Bandera", false);
+                })
+                .catch((error) => {
+                     console.error(error)
+                     console.log("1. ", this.$store.state.bandera)
+                     this.$store.dispatch("set_Auth", false);
+                     this.$store.dispatch("set_Bandera", true);
+                     console.log("2. ", this.$store.state.bandera)
+                });
+                this.$router.push({path:'/orden'})
+                },                
+            }
+        }
     };
 </script>

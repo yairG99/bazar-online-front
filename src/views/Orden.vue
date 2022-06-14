@@ -10,9 +10,6 @@
                 </v-row>
         </v-col>
         <v-col cols="12" sm="2">
-            <v-btn x-large fab dark to="/contacto" >
-                <v-icon x-large>mdi-arrow-left</v-icon>
-            </v-btn>
         </v-col>
     </v-row>
     <v-row>
@@ -28,7 +25,7 @@
     <v-row class="mt-16 mb-16">
         <v-col cols="12" sm="4"></v-col>
             <v-col cols="12" sm="4" >
-                <a @click="CerrarSesion"  class="ml-16 textoSeguir">
+                <a @click="CerrarSesion"  href="/" class="ml-16 textoSeguir">
                    ¿Quieres seguir comprando? 
                 </a>
             </v-col>

@@ -18,9 +18,10 @@ export default new Vuex.Store({
     ),
     products: [],
     places: [],
+    cliente_id: null,
+    auth: false,
+    bandera: false,
     invalidItem: false,
-    // tokenCliente:null,
-    // idcliente: null
     correo:null,
     telefono: null,
   },
@@ -33,6 +34,7 @@ export default new Vuex.Store({
         state.cart.productos.includes(product._id)
       ),
     getValidState: (state) => state.invalidItem,
+    getClienteId: (state) => state.cliente_id
   },
   mutations: {
     addToCart(state, payload) {
@@ -69,6 +71,15 @@ export default new Vuex.Store({
     },
     setTel(state, payload){
       state.telefono = payload
+    },
+    set_idCliente(state, cliente_id){
+      state.cliente_id = cliente_id
+    },
+    set_Auth(state, auth){
+      state.auth = auth
+    },
+    set_Bandera(state, auth){
+      state.bandera = auth
     }
   },
   actions: {
@@ -118,7 +129,16 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
-    async registracontacto({commit},cliente){//registra el cliente, obtiene el id y lo carga al localstoragew
+    async set_idCliente({commit}, cliente_id) {
+      commit("set_idCliente", cliente_id);
+    },
+    async set_Auth({commit}, auth) {
+      commit("set_Auth", auth);
+    },
+    async set_Bandera({commit}, auth) {
+      commit("set_Bandera", auth);
+    }
+ /*   async registracontacto({commit},cliente){//registra el cliente, obtiene el id y lo carga al localstoragew
       
       try {
         const res= await fetch('https://bazar-online-back.herokuapp.com/api/clientes',{
@@ -150,7 +170,7 @@ export default new Vuex.Store({
       localStorage.removeItem('telefono')
       localStorage.removeItem('place')
       window.location.replace("/");
-    }
+    }*/
     // obtenerIdCliente({commit}){
     //   if(localStorage.getItem('idCliente')){
     //     commit('setIdCliente',localStorage.getItem('idCliente'))

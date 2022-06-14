@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <form @submit.prevent="registracontacto(cliente)">
+    <form @submit.prevent="RegistrarContacto();">
 <v-row class="mt-10">
       <v-col cols="12" sm="10">
         <v-row>
@@ -66,7 +66,6 @@
       <v-col cols="12" sm="5"></v-col>
       <v-col cols="12" sm="2">
         <v-btn
-          flat
           x-large
           rounded
           type="submit"
@@ -77,11 +76,20 @@
       <v-col cols="12" sm="5"></v-col>
     </v-row>
     </form>
+    <div class="text-center">
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+  </div>
   </v-container>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import axios from "axios";
+
 export default {
   name: "Contacto",
   data() {
@@ -90,13 +98,35 @@ export default {
         email:"",
         tel:"",
         instagram:""
-      }
+      },
+      id_cliente: '',
+      bandera1:false,
+      overlay: false,
     }
   },
   methods:{
-        ...mapActions(['registracontacto'])
+       RegistrarContacto(){
+        setTimeout(() => this.bandera1 = false, 5000); 
+        this.overlay = !this.overlay
+        const ruta = 'https://bazar-online-back.herokuapp.com/api/clientes'
+                axios.post(ruta, this.cliente)
+                    .then((response) => {
+                        console.log(response.data.valor._id);
+                        this.id_cliente = response.data.valor._id ;
+                        this.$store.dispatch("set_idCliente", this.id_cliente)
+                        console.log("Cliente desde store", this.$store.state.cliente_id)
+                    }, (error) => {
+                        console.log(error);
+                    });
+        setTimeout(() => this.$router.push({path:'/token'}), 500);           
+       }
   },
-  computed: {
-  },
+  watch: {
+    overlay (val) {
+      val && setTimeout(() => {
+          this.overlay = false
+        }, 3000)
+      },
+  }
 };
 </script>

@@ -10,6 +10,9 @@
             </v-btn>
         </v-col>
     </v-row>
+    <v-row>
+        Vuelva pronto aún no esta activa esta funcion:(
+    </v-row>
 </v-container>
 </template>
 
