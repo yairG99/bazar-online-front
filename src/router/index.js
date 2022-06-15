@@ -7,6 +7,7 @@ import Checkout from '../views/Checkout.vue'
 import Contacto from '../views/Contacto.vue'
 import Token from '../views/Token.vue'
 import Orden from '../views/Orden.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -44,10 +45,11 @@ const routes = [
   {
     path:'/orden',
     name: 'Orden',
+    meta: {
+      requiresAuth: true
+    },
     component: Orden
   },
-
-  
 ]
 
 const router = new VueRouter({
@@ -55,5 +57,18 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if(store.state.auth) {
+      next();
+    } else {
+      next({ name: 'Token'})
+    }
+  } else {
+    next();
+  }
+});
+
 
 export default router
