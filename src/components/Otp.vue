@@ -42,6 +42,7 @@
 <script>
 import axios from "axios";
 import { BASE_URL, ENDPOINTS } from "../constants";
+import { mapActions } from "vuex";
 
 export default {
   name: "Otp",
@@ -50,18 +51,23 @@ export default {
     token: "",
   }),
   methods: {
+    ...mapActions(["set_Bandera", "set_Auth"]),
     Login() {
-      const url = BASE_URL + ENDPOINTS.CLIENTS.LOGIN;
-      console.log("Log : ", this.otp);
-      axios.post(url, { token: this.otp }).then(
-        (response) => {
-          this.token = response.data.token;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      this.overlay = !this.overlay;
+      if (this.otp.length < 6) {
+        this.set_Bandera(true);
+      } else {
+        const url = BASE_URL + ENDPOINTS.CLIENTS.LOGIN;
+        console.log("Log : ", this.otp);
+        axios.post(url, { token: this.otp }).then(
+          (response) => {
+            this.token = response.data.token;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        this.overlay = !this.overlay;
+      }
     },
   },
   computed: {
@@ -86,6 +92,7 @@ export default {
         } catch (error) {
           console.error(error);
           this.$store.dispatch("set_Auth", false);
+          this.$store.dispatch("set_Bandera", true);
         }
         this.$router.push({ path: "/orden" });
       },

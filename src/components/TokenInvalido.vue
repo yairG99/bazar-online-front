@@ -3,8 +3,7 @@
     <v-dialog v-model="this.$store.state.bandera" max-width="290">
       <v-card>
         <v-card-title class="text-h5">
-          El token introducido
-          <br />es <strong>inválido</strong>.
+          El token introducido <strong>no es válido</strong>.
         </v-card-title>
 
         <v-card-text> Por favor, introduce un token válido :) </v-card-text>
