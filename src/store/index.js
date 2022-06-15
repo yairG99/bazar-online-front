@@ -20,6 +20,7 @@ export default new Vuex.Store({
     places: [],
     cliente_id: null,
     auth: false,
+    bandera: false,
     invalidItem: false,
     correo: null,
     telefono: null,
@@ -59,12 +60,6 @@ export default new Vuex.Store({
     toggleValidity(state) {
       state.invalidItem = !state.invalidItem;
     },
-    // setTokenCliente(state, payload){
-    //   state.tokenCliente=payload
-    // },
-    // setIdCliente(state, payload){
-    //   state.idcliente = payload
-    // }
     setCorreo(state, payload) {
       state.correo = payload;
     },
@@ -76,6 +71,9 @@ export default new Vuex.Store({
     },
     set_Auth(state, auth) {
       state.auth = auth;
+    },
+    set_Bandera(state, auth) {
+      state.bandera = auth;
     },
   },
   actions: {
@@ -130,6 +128,21 @@ export default new Vuex.Store({
     },
     async set_Auth({ commit }, auth) {
       commit("set_Auth", auth);
+    },
+    async set_Bandera({ commit }, auth) {
+      commit("set_Bandera", auth);
+    },
+    CerrarSesion({ commit }) {
+      commit("setPlaces", null);
+      commit("setCorreo", null);
+      commit("setTel", null);
+      commit("setProducts", null);
+      localStorage.removeItem("products");
+      localStorage.removeItem("cart");
+      localStorage.removeItem("correo");
+      localStorage.removeItem("telefono");
+      localStorage.removeItem("place");
+      window.location.replace("/");
     },
   },
   modules: {},
